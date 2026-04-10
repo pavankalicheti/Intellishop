@@ -773,7 +773,9 @@ export function renderFraudDashboard(container) {
                 </div>
                 <div class="fraud-panel" id="fraudTypeSection">
                     <h3 class="panel-title">🧩 Fraud Type Breakdown</h3>
-                    <canvas id="fraudTypeChart" height="260"></canvas>
+                    <div style="height: 260px; position: relative;">
+                        <canvas id="fraudTypeChart"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -802,7 +804,9 @@ export function renderFraudDashboard(container) {
             <!-- 10. TREND CHART -->
             <div class="fraud-panel" id="trendSection">
                 <h3 class="panel-title">📈 30-Day Fraud Trend</h3>
-                <canvas id="trendChart" height="120"></canvas>
+                <div style="height: 280px; position: relative;">
+                    <canvas id="trendChart"></canvas>
+                </div>
             </div>
         </div>
     `;
