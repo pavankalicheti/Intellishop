@@ -1,8 +1,3 @@
-# Hide Python files from GitHub Language Statistics
-*.py linguist-detectable=false
-ml/** linguist-detectable=false
-requirements.txt linguist-detectable=false
-
 # Hide CSS files from GitHub Language Statistics
 *.css linguist-detectable=false
 chatbot.css linguist-detectable=false
