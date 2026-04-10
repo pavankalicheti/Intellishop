@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build:chatbot": "cd chatbot_widget && npm run build && cp dist/assets/chatbot.bundle.js ../netlify_deploy/ && cp dist/assets/chatbot.css ../netlify_deploy/",
+    "dev": "vite netlify_deploy"
+  },
+  "dependencies": {
+
+    "puppeteer": "^24.38.0"
+  }
+}

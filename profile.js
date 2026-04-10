@@ -160,9 +160,7 @@ function handleProfileSave(e) {
     showToast('Profile updated securely!');
 }
 
-// ═══════════════════════════════════════════════════
-// ADDRESS BOOK MANAGEMENT
-// ═══════════════════════════════════════════════════
+// --- ADDRESS BOOK MANAGEMENT ---
 
 function getAddresses() {
     return JSON.parse(localStorage.getItem('intellishop_addresses') || '[]');

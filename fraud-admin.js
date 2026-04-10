@@ -172,9 +172,7 @@ function renderFraudDashboard() {
 }
 
 
-// ═══════════════════════════════════════════════
-// HELPER FUNCTIONS
-// ═══════════════════════════════════════════════
+// --- HELPER FUNCTIONS ---
 
 function getRiskColor(score) {
     if (score <= 30) return '#10b981';
@@ -210,9 +208,7 @@ function renderMiniBar(label, value) {
 }
 
 
-// ═══════════════════════════════════════════════
-// CHARTS
-// ═══════════════════════════════════════════════
+// --- CHARTS ---
 
 function renderRiskDistributionChart(events) {
     const ctx = document.getElementById('riskDistChart');

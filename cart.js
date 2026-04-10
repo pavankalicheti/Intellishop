@@ -63,7 +63,7 @@ window.removeFromCart = function(id) {
     showToast('Item removed');
 }
 
-// ═══════ SAVE FOR LATER ═══════
+// --- SAVE FOR LATER ---
 
 window.saveForLater = function(id) {
     const item = cart.find(p => p.id === id);
@@ -178,7 +178,7 @@ export function renderCartPage() {
         `).join('');
     }
 
-    // ═══════ SAVED FOR LATER SECTION ═══════
+    // --- SAVED FOR LATER SECTION ---
     if (savedForLater.length > 0) {
         html += `
             <div class="saved-section">

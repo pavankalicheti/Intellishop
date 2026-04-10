@@ -2,9 +2,7 @@
 // Implements: Device Fingerprinting, Behavioral Biometrics, Isolation Forest,
 //             Graph Analysis, Velocity Engine, and Risk Decision Engine
 
-// ═══════════════════════════════════════════════════════════════════
-// 1. DEVICE FINGERPRINTING ENGINE
-// ═══════════════════════════════════════════════════════════════════
+// --- 1. DEVICE FINGERPRINTING ENGINE ---
 
 function generateDeviceFingerprint() {
     const components = [];
@@ -78,9 +76,7 @@ function hashString(str) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 2. BEHAVIORAL BIOMETRICS COLLECTOR
-// ═══════════════════════════════════════════════════════════════════
+// --- 2. BEHAVIORAL BIOMETRICS COLLECTOR ---
 
 const biometrics = {
     mousePositions: [],      // {x, y, t}
@@ -201,9 +197,7 @@ function extractSessionFeatures() {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 3. FEATURE ENGINEERING PIPELINE
-// ═══════════════════════════════════════════════════════════════════
+// --- 3. FEATURE ENGINEERING PIPELINE ---
 
 function buildFeatureVector(transactionData) {
     const deviceHash = generateDeviceFingerprint();
@@ -288,9 +282,7 @@ function buildFeatureVector(transactionData) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 4. ISOLATION FOREST (JavaScript Implementation)
-// ═══════════════════════════════════════════════════════════════════
+// --- 4. ISOLATION FOREST ---
 
 class IsolationTree {
     constructor(data, maxDepth, currentDepth = 0) {
@@ -406,9 +398,7 @@ function trainForest() {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 5. WEIGHTED FEATURE SCORER
-// ═══════════════════════════════════════════════════════════════════
+// --- 5. WEIGHTED FEATURE SCORER ---
 
 function weightedFeatureScore(features) {
     let score = 0;
@@ -468,9 +458,7 @@ function weightedFeatureScore(features) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 6. VELOCITY ENGINE
-// ═══════════════════════════════════════════════════════════════════
+// --- 6. VELOCITY ENGINE ---
 
 function velocityScore(features) {
     let score = 0;
@@ -495,9 +483,7 @@ function velocityScore(features) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 7. GRAPH-BASED FRAUD DETECTION
-// ═══════════════════════════════════════════════════════════════════
+// --- 7. GRAPH-BASED FRAUD DETECTION ---
 
 function recordDeviceUserLink(deviceHash, email) {
     if (!deviceHash || !email) return;
@@ -549,9 +535,7 @@ function computeGraphRisk(deviceHash, email) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 8. RISK DECISION ENGINE
-// ═══════════════════════════════════════════════════════════════════
+// --- 8. RISK DECISION ENGINE ---
 
 const RISK_THRESHOLDS = {
     LOW: 30,
@@ -603,9 +587,7 @@ function getRiskDecision(score) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 9. FRAUD EVENT LOGGING
-// ═══════════════════════════════════════════════════════════════════
+// --- 9. FRAUD EVENT LOGGING ---
 
 function logFraudEvent(transactionData, featureVector, riskResult, decision) {
     const events = JSON.parse(localStorage.getItem('intellishop_fraud_events') || '[]');
@@ -661,9 +643,7 @@ function logFraudEvent(transactionData, featureVector, riskResult, decision) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 10. FRAUD SIMULATION (for demo/testing)
-// ═══════════════════════════════════════════════════════════════════
+// --- 10. FRAUD SIMULATION ---
 
 function generateSyntheticTrainingData() {
     const data = [];
@@ -734,9 +714,7 @@ function generateSyntheticTrainingData() {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════
-// 11. PUBLIC API
-// ═══════════════════════════════════════════════════════════════════
+// --- 11. PUBLIC API ---
 
 export function initFraudDetection() {
     // Start collecting behavioral biometrics immediately

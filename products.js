@@ -57,9 +57,7 @@ export async function initProducts() {
     }
 }
 
-// ═══════════════════════════════════════════════════
-// AUTOCOMPLETE DROPDOWN
-// ═══════════════════════════════════════════════════
+// --- AUTOCOMPLETE DROPDOWN ---
 
 function showAutocomplete(query) {
     const results = searchProducts(query).slice(0, 6);
@@ -112,9 +110,7 @@ function closeAutocomplete() {
     if (d) d.style.display = 'none';
 }
 
-// ═══════════════════════════════════════════════════
-// PRODUCT LISTING + ENHANCED FILTERS
-// ═══════════════════════════════════════════════════
+// --- PRODUCT LISTING + ENHANCED FILTERS ---
 
 function renderProductsPage() {
     const grid = document.getElementById('products-grid');
@@ -236,9 +232,7 @@ function renderGrid(products) {
     `).join('');
 }
 
-// ═══════════════════════════════════════════════════
-// PRODUCT DETAIL PAGE (with Size Chart + Reviews)
-// ═══════════════════════════════════════════════════
+// --- PRODUCT DETAIL PAGE (with Size Chart + Reviews) ---
 
 function renderProductDetail(id) {
     const p = allProducts.find(x => x.id == id);
@@ -337,9 +331,7 @@ function renderProductDetail(id) {
     renderReviewsChart(p.rating);
 }
 
-// ═══════════════════════════════════════════════════
-// SIZE CHART MODAL
-// ═══════════════════════════════════════════════════
+// --- SIZE CHART MODAL ---
 
 window.showSizeChart = function() {
     let modal = document.getElementById('sizeChartModal');
@@ -380,9 +372,7 @@ window.showSizeChart = function() {
     modal.style.display = 'flex';
 };
 
-// ═══════════════════════════════════════════════════
-// SIZE RECOMMENDATION HELPER
-// ═══════════════════════════════════════════════════
+// --- SIZE RECOMMENDATION HELPER ---
 
 window.showSizeRecommender = function() {
     let modal = document.getElementById('sizeRecommendModal');
@@ -494,9 +484,7 @@ window.selectSize = function(el) {
     el.classList.add('size-active');
 };
 
-// ═══════════════════════════════════════════════════
-// USER REVIEWS SYSTEM
-// ═══════════════════════════════════════════════════
+// --- USER REVIEWS SYSTEM ---
 
 window.showReviewForm = function(productId) {
     const container = document.getElementById('reviewFormContainer');
@@ -626,9 +614,7 @@ function renderReviews(productId) {
     `).join('');
 }
 
-// ═══════════════════════════════════════════════════
-// BRAND PAGE
-// ═══════════════════════════════════════════════════
+// --- BRAND PAGE ---
 
 export function renderBrandPage(brandName) {
     const container = document.getElementById('brand-storefront-container');
@@ -700,9 +686,7 @@ export function renderBrandPage(brandName) {
     `;
 }
 
-// ═══════════════════════════════════════════════════
-// CURATED COLLECTIONS PAGE
-// ═══════════════════════════════════════════════════
+// --- CURATED COLLECTIONS PAGE ---
 
 export function renderCollectionsPage() {
     const container = document.getElementById('collections-container');
@@ -731,9 +715,7 @@ export function renderCollectionsPage() {
     `;
 }
 
-// ═══════════════════════════════════════════════════
-// REVIEWS CHART (existing — preserved)
-// ═══════════════════════════════════════════════════
+// --- REVIEWS CHART ---
 
 function renderReviewsChart(avgRating) {
     const ctx = document.getElementById('reviewsChart');
@@ -766,9 +748,7 @@ function renderReviewsChart(avgRating) {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// GLOBAL WINDOW FUNCTIONS (existing — preserved)
-// ═══════════════════════════════════════════════════
+// --- GLOBAL WINDOW FUNCTIONS ---
 
 window.addToCartLocal = function(id, e) {
     e.stopPropagation();

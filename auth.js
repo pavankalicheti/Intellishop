@@ -113,7 +113,7 @@ export function updateCurrentUser(updatedUser) {
     updateAuthUI();
 }
 
-// ═══════ FORGOT PASSWORD ═══════
+// --- FORGOT PASSWORD ---
 
 function showForgotPassword() {
     hideModal('authModal');

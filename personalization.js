@@ -2,9 +2,7 @@
 import { allProducts } from './products.js?v=9';
 import { showToast, navigateTo } from './ui.js';
 
-// ═══════════════════════════════════════════════════
-// 1. PERSONALIZED HOMEPAGE
-// ═══════════════════════════════════════════════════
+// --- 1. PERSONALIZED HOMEPAGE ---
 
 export function initPersonalization() {
     document.addEventListener('page:home', () => setTimeout(injectPersonalizedSections, 300));
@@ -119,9 +117,7 @@ function injectSection(parent, title, products, subtitle = '') {
     }
 }
 
-// ═══════════════════════════════════════════════════
-// 2. FLASH SALE & COUNTDOWN TIMERS
-// ═══════════════════════════════════════════════════
+// --- 2. FLASH SALE & COUNTDOWN TIMERS ---
 
 function injectFlashSale(parent) {
     // Flash sale ends at midnight
@@ -209,9 +205,7 @@ function startCountdown(endTime) {
     setInterval(update, 1000);
 }
 
-// ═══════════════════════════════════════════════════
-// 3. STYLE QUIZ
-// ═══════════════════════════════════════════════════
+// --- 3. STYLE QUIZ ---
 
 function injectQuizCTA(parent) {
     const cta = document.createElement('div');
@@ -332,9 +326,7 @@ window.quizBack = function() {
     renderStyleQuiz();
 };
 
-// ═══════════════════════════════════════════════════
-// 4. LOYALTY PROGRAM (Intellishop Points)
-// ═══════════════════════════════════════════════════
+// --- 4. LOYALTY PROGRAM ---
 
 export function initLoyalty() {
     // Calculate points from order history on load

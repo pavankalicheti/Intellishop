@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intellishop - Fashion</title>
+
+  <style>
+    :root{
+      --green:#1b7f4b;
+      --green-2:#dff5e8;
+      --green-3:#bfead2;
+      --text:#111827;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --shadow:0 10px 26px rgba(0,0,0,0.10);
+      --radius:18px;
+    }
+
+    *{ margin:0; padding:0; box-sizing:border-box; font-family: "Segoe UI", Arial, sans-serif; }
+    body{ background: var(--green-2); color: var(--text); }
+
+    .bg{
+      min-height: 100vh;
+      padding: 28px 18px;
+      background:
+        radial-gradient(1200px 600px at 20% -20%, rgba(27,127,75,0.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 30%, rgba(27,127,75,0.12), transparent 60%),
+        linear-gradient(180deg, rgba(223,245,232,1), rgba(223,245,232,1));
+    }
+
+    .wrap{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+}
+
+.panel{
+  width: 100%;
+  margin-bottom: 24px;
+  background: #ffffff;
+}
+
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .left{
+      padding: 18px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 10px 10px 16px;
+      gap: 12px;
+    }
+    .search-box{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.search-box input{
+  width:100%;
+  max-width:280px;
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  outline:none;
+  font-size:13px;
+}
+
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand span{
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .logo-img{
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav{
+      display:flex;
+      gap: 18px;
+      font-size: 12px;
+      color: #374151;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a{ text-decoration:none; color: inherit; }
+    .nav a:hover{ color: var(--green); }
+
+    .signup{
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero{
+      background: #f7faf9;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-40px -60px auto auto;
+      width:220px;
+      height:220px;
+      background: radial-gradient(circle, rgba(27,127,75,0.22), transparent 60%);
+      transform: rotate(15deg);
+    }
+
+    .hero h1{
+      font-size: 44px;
+      line-height: 1.02;
+      letter-spacing: 0.2px;
+      margin-bottom: 10px;
+    }
+
+    .hl{
+      background: var(--green);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .hero p{
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 13px;
+      max-width: 420px;
+    }
+
+    .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn.primary{
+      background: var(--green);
+      border-color: var(--green);
+      color:#fff;
+    }
+
+    .model{
+      height: 220px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--green-3), #ffffff);
+      border: 1px dashed rgba(27,127,75,0.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .logos{
+      margin-top: 14px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 14px;
+      display:flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .section{
+      margin-top: 18px;
+      padding: 8px 8px 0;
+    }
+
+    .section h2{
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      margin-bottom: 12px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .p-card{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .p-img{
+      height: 230px;
+      background: #f7faf9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow: hidden;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .p-img img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .p-body{
+      padding: 10px 10px 12px;
+    }
+
+    .p-title{
+      font-weight: 900;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .p-sub{
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .right{
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .r-card{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .sale{
+      display:grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      min-height: 130px;
+    }
+
+    .sale-left{
+      background: linear-gradient(135deg, var(--green-3), #ffffff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color: var(--green);
+      border-right: 1px solid var(--border);
+    }
+
+    .sale-right{
+      padding: 14px;
+      background: #f7faf9;
+    }
+
+    .sale-right h3{
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .sale-right p{
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .mini-btn{
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .fav{
+      padding: 12px;
+    }
+
+    .fav h4{
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .fav-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .tile{
+  height: 160px;              /* taller tile for better look */
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #145a35;
+}
+
+.tile img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;   /* 👈 FACE VISIBLE */
+}
+
+
+
+
+.tile span{
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.85);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+
+    .app{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 10px;
+      padding: 12px;
+      align-items: center;
+    }
+
+    .app h4{
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .app p{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .phone{
+      height: 150px;
+      border-radius: 16px;
+      background: #f7faf9;
+      border: 1px dashed rgba(27,127,75,0.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .news{
+      background: var(--green);
+      color: #fff;
+      padding: 14px;
+    }
+
+    .news h4{
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .news small{
+      opacity: 0.9;
+      display:block;
+      margin-bottom: 10px;
+    }
+
+    .form{
+      display:flex;
+      gap: 8px;
+    }
+
+    .form input{
+      flex:1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .form button{
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: none;
+      background: #0b2a1a;
+      color:#fff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .mini-foot{
+      background: #0b2a1a;
+      color: rgba(255,255,255,0.85);
+      padding: 14px;
+      font-size: 12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-foot b{
+      color:#fff;
+      display:block;
+      margin-bottom: 6px;
+    }
+
+    .mini-foot div{
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px){
+      .left{ padding: 12px; }
+      .topbar{ padding: 8px 6px 12px; }
+      .hero{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .sale{ grid-template-columns: 1fr; }
+      .sale-left{ border-right: none; border-bottom: 1px solid var(--border); }
+      .mini-foot{ grid-template-columns: 1fr; }
+    }
+    .model img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .sale-left img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* ===== CART ANIMATIONS ===== */
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #1b7f4b;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: slideIn 0.4s ease, fadeOut 0.4s ease 2.6s forwards;
+  z-index: 2000;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(20px); }
+}
+
+.cart-bounce {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* remove animation */
+.fade-out {
+  animation: fadeRemove 0.3s ease forwards;
+}
+
+@keyframes fadeRemove {
+  to { opacity: 0; transform: translateX(40px); }
+}
+.qty-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:8px 0;
+}
+.cart-action{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.qty-box button{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  border:1px solid #1b7f4b;
+  background:#fff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <div class="topbar">
+    <div class="brand" style="cursor:pointer;">
+      <img src="logo.jpg" alt="Intellishop Logo" class="logo-img">
+      <span>Intellishop</span>
+    </div>
+    <div class="search-box">
+      <input id="searchInput" placeholder="Search for products, brands, categories...">
+    </div>
+    
+    <div class="nav">
+      <a href="#products">CATALOGUE</a>
+      <a href="#products">FASHION</a>
+      <a href="#wishlist">FAVOURITE</a>
+      <a href="#orders">MY ORDERS</a>
+    </div>
+
+    <div style="display:flex; gap:15px; align-items:center;">
+      <button onclick="window.location.hash='#wishlist'" style="background:none;border:none;font-size:20px;cursor:pointer">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+      <button onclick="window.location.hash='#cart'" style="position:relative;background:none;border:none;font-size:20px;cursor:pointer">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" style="position:absolute;top:-6px;right:-8px;background:#1b7f4b;color:#fff;border-radius:50%;padding:2px 6px;font-size:11px;">0</span>
+      </button>
+      <button class="signup">SIGN UP</button>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <main id="app">
+    
+    <!-- HOME PAGE -->
+    <section id="home-page" class="page-section">
+      <div class="wrap" style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px;">
+        <div class="panel left">
+          <div class="hero">
+            <div>
+              <h1>LET'S<br>EXPLORE<br><span class="hl">UNIQUE</span><br>CLOTHES.</h1>
+              <p>Live for influential and innovative fashion.</p>
+              <div class="cta">
+                <button class="btn primary" onclick="window.location.hash='#products'">SHOP NOW</button>
+              </div>
+            </div>
+            <div class="model">
+              <img src="main.jpg" alt="Main Model">
+            </div>          
+          </div>
+          
+          <div class="logos">
+            <div>H&amp;M</div>
+            <div>OBEY</div>
+            <div>SHOPIFY</div>
+            <div>LACOSTE</div>
+            <div>LEVI'S</div>
+            <div>AMAZON</div>
+          </div>
+          
+          <div class="section">
+            <h2>NEW ARRIVALS</h2>
+            <div class="cards">
+              <div class="p-card" onclick="window.location.hash='#products:hoodies'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38"></div>
+                <div class="p-body">
+                  <div class="p-title">Hoodies & Sweatshirt</div>
+                  <div class="p-sub">Explore Now →</div>
+                </div>
+              </div>
+              <div class="p-card" onclick="window.location.hash='#products:coats'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3"></div>
+                <div class="p-body">
+                  <div class="p-title">Coats & Parkas</div>
+                  <div class="p-sub">Explore Now →</div>
+                </div>
+              </div>
+              <div class="p-card" onclick="window.location.hash='#products:tees'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"></div>
+                <div class="p-body">
+                  <div class="p-title">Tees & T-Shirt</div>
+                  <div class="p-sub">Explore Now →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel right">
+          <div class="r-card sale">
+            <div class="sale-left"><img src="sale.jpg" alt="Sale"></div>
+            <div class="sale-right">
+              <h3>PAYDAY SALE NOW</h3>
+              <p>Spend minimum ₹999 and get flat 30% off.</p>
+              <button class="mini-btn" onclick="window.location.hash='#products'">SHOP NOW</button>
+            </div>
+          </div>
+
+          <div class="r-card fav">
+            <h4>Favourite</h4>
+            <div class="fav-grid">
+              <div class="tile">
+                <img src="summer.jpg" alt="Summer Fit" style="object-position: top center;">
+                <span>Summer Fit</span>
+              </div>
+              <div class="tile">
+                <img src="street.jpg" alt="Street Look" style="object-position: 50% 30%;">
+                <span>Street Look</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS LISTING PAGE -->
+    <section id="products-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;">
+        <h2>Products</h2>
+        <div id="products-filters" style="display:flex; gap:15px; margin-bottom:20px; flex-wrap:wrap;">
+            <!-- Filters injected by JS -->
+        </div>
+        <div class="cards" id="products-grid"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL PAGE -->
+    <section id="product-detail-page" class="page-section" style="display:none; padding:20px;">
+        <div class="wrap panel" style="padding:20px;" id="product-detail-container">
+            Loading...
+        </div>
+        <!-- Reviews Chart Container -->
+        <div class="wrap panel" style="padding:20px; margin-top:20px;">
+            <h3>Rating Distribution</h3>
+            <canvas id="reviewsChart" style="max-height: 200px;"></canvas>
+        </div>
+    </section>
+
+    <!-- CART PAGE -->
+    <section id="cart-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;">
+        <h2>Your Cart</h2>
+        <div id="cart-items-container" class="cards" style="margin-bottom:20px;"></div>
+        <div id="cart-summary"></div>
+      </div>
+    </section>
+
+    <!-- CHECKOUT PAGE -->
+    <section id="checkout-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;" id="checkout-container">
+        <h2>Checkout</h2>
+        <!-- Checkout Form Injected by JS -->
+      </div>
+    </section>
+
+    <!-- WISHLIST PAGE -->
+    <section id="wishlist-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;">
+        <h2>My Wishlist</h2>
+        <div id="wishlist-grid" class="cards"></div>
+      </div>
+    </section>
+
+    <!-- ORDERS PAGE -->
+    <section id="orders-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;">
+        <h2>Order History</h2>
+        <div id="orders-container"></div>
+      </div>
+    </section>
+
+    <!-- PROFILE PAGE -->
+    <section id="profile-page" class="page-section" style="display:none; padding:20px;">
+      <div class="wrap panel" style="padding:20px;">
+        <h2>My Profile</h2>
+        <div id="profile-container"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AUTH MODALS -->
+  <div id="authModal" class="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div class="modal-overlay" style="position:absolute; inset:0;"></div>
+    <div style="position:relative; width:100%; max-width:360px; background:#fff; padding:20px; border-radius:16px; z-index:1001;">
+      <h3>Sign In</h3>
+      <input id="loginEmail" placeholder="Email" style="width:100%;padding:10px;margin:8px 0">
+      <input id="loginPassword" type="password" placeholder="Password" style="width:100%;padding:10px;margin:8px 0">
+      <button id="loginBtn" style="width:100%;padding:10px;background:#1b7f4b;color:#fff;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">Login</button>
+      <p style="font-size:12px;margin-top:10px">New user? <a href="javascript:void(0)" onclick="document.getElementById('authModal').style.display='none';document.getElementById('registerModal').style.display='flex'">Register</a></p>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div class="modal-overlay" style="position:absolute; inset:0;"></div>
+    <div style="position:relative; width:100%; max-width:360px; background:#fff; padding:20px; border-radius:16px; z-index:1001;">
+      <h3>Create Account</h3>
+      <input id="regName" placeholder="Name" style="width:100%;padding:10px;margin:8px 0">
+      <input id="regEmail" placeholder="Email" style="width:100%;padding:10px;margin:8px 0">
+      <input id="regPass" type="password" placeholder="Password" style="width:100%;padding:10px;margin:8px 0">
+      <button id="registerBtn" style="width:100%;padding:10px;background:#1b7f4b;color:#fff;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">Register</button>
+    </div>
+  </div>
+
+  <!-- EXTERNAL LIBS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+  <!-- APP LOGIC -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

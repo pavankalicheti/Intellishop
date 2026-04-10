@@ -7,9 +7,7 @@ import {
     generateTrendData, generateAttackEvent, generateSparkline
 } from './mock-data.js';
 
-// ═══════════════════════════════════════════════════
-// STATE MANAGEMENT
-// ═══════════════════════════════════════════════════
+// --- STATE MANAGEMENT ---
 let threatLevel = 35;
 let isAttackMode = false;
 let activityFeedData = [];
@@ -19,9 +17,7 @@ let watchlistState = [];
 let whitelistedState = [];
 let currentBlockedTab = 'blocked';
 
-// ═══════════════════════════════════════════════════
-// TOAST NOTIFICATION SYSTEM (Global)
-// ═══════════════════════════════════════════════════
+// --- TOAST NOTIFICATION SYSTEM (Global) ---
 function showAdminToast(message, type = 'success') {
     // Remove old container if missing
     let container = document.getElementById('admin-toast-container');
@@ -68,7 +64,7 @@ function injectToastStyles() {
         @keyframes toastSlideIn { from { opacity:0; transform:translateX(60px); } to { opacity:1; transform:translateX(0); } }
         @keyframes toastSlideOut { to { opacity:0; transform:translateX(60px); } }
 
-        /* ═══ MODAL & DRAWER SYSTEM ═══ */
+        /* --- MODAL & DRAWER SYSTEM --- */
         .fraud-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
             z-index:5000; display:flex; align-items:center; justify-content:center;
@@ -205,9 +201,7 @@ function injectToastStyles() {
 // Make toast globally available for other admin sections
 window.showAdminToast = showAdminToast;
 
-// ═══════════════════════════════════════════════════
-// HELPER: Generate enriched event details for the drawer
-// ═══════════════════════════════════════════════════
+// --- HELPER: Generate enriched event details for the drawer ---
 function generateEventDetails(event) {
     const paymentMethods = ['UPI - GPay', 'UPI - PhonePe', 'Credit Card - Visa', 'Debit Card - RuPay', 'Net Banking - HDFC', 'Wallet - Paytm'];
     const browsers = ['Chrome 120', 'Safari 17', 'Firefox 121', 'Edge 120', 'Headless Chrome'];
@@ -262,9 +256,7 @@ function formatDateShort(d) {
     return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-// ═══════════════════════════════════════════════════
-// OVERLAY / MODAL SYSTEM
-// ═══════════════════════════════════════════════════
+// --- OVERLAY / MODAL SYSTEM ---
 function closeAllOverlays() {
     document.querySelectorAll('.fraud-overlay, .fraud-drawer-overlay').forEach(el => {
         el.style.animation = 'overlayFadeOut 0.25s ease forwards';
@@ -278,9 +270,7 @@ function onEscKey(e) {
     if (e.key === 'Escape') closeAllOverlays();
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: REVIEW — Opens right-side drawer with full details
-// ═══════════════════════════════════════════════════
+// --- ACTION: REVIEW — Opens right-side drawer with full details ---
 function handleReview(eventId) {
     const event = activityFeedData.find(e => e.id === eventId);
     if (!event) return;
@@ -418,9 +408,7 @@ function openReviewDrawer(event, details, riskColor, isReadOnly) {
     }
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: BLOCK USER — Confirmation + State Update
-// ═══════════════════════════════════════════════════
+// --- ACTION: BLOCK USER — Confirmation + State Update ---
 function handleBlockUser(eventId, userId) {
     closeAllOverlays();
 
@@ -477,9 +465,7 @@ function confirmBlock(eventId, userId) {
     showAdminToast(`User ${userId} has been blocked`, 'block');
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: WHITELIST — Confirmation + State Update
-// ═══════════════════════════════════════════════════
+// --- ACTION: WHITELIST — Confirmation + State Update ---
 function handleWhitelist(eventId, userId) {
     closeAllOverlays();
 
@@ -534,9 +520,7 @@ function confirmWhitelist(eventId, userId) {
     showAdminToast(`User ${userId} whitelisted successfully`, 'success');
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: ESCALATE — Level selection modal
-// ═══════════════════════════════════════════════════
+// --- ACTION: ESCALATE — Level selection modal ---
 function handleEscalate(eventId, userId) {
     closeAllOverlays();
 
@@ -633,9 +617,7 @@ function confirmEscalate(eventId, userId) {
     showAdminToast(`Transaction escalated to Level ${level}`, 'escalate');
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: UNBLOCK — Confirmation + State Update
-// ═══════════════════════════════════════════════════
+// --- ACTION: UNBLOCK — Confirmation + State Update ---
 function handleUnblock(userId) {
     closeAllOverlays();
 
@@ -692,9 +674,7 @@ function confirmUnblock(userId) {
     showAdminToast(`User ${userId} has been unblocked`, 'success');
 }
 
-// ═══════════════════════════════════════════════════
-// ACTION: VIEW — Read-only drawer for blocked user
-// ═══════════════════════════════════════════════════
+// --- ACTION: VIEW — Read-only drawer for blocked user ---
 function handleViewBlockedUser(userId) {
     const blocked = blockedUsersState.find(b => b.id === userId);
     if (!blocked) return;
@@ -725,17 +705,13 @@ function handleViewBlockedUser(userId) {
     openReviewDrawer(syntheticEvent, details, riskColor, true);
 }
 
-// ═══════════════════════════════════════════════════
-// FEED ROW UPDATER — Refreshes a single row in the feed
-// ═══════════════════════════════════════════════════
+// --- FEED ROW UPDATER ---
 function refreshFeedRow(event) {
     // Re-render the entire feed to avoid complex DOM manipulation
     renderActivityFeed();
 }
 
-// ═══════════════════════════════════════════════════
-// REGISTER GLOBAL ACTION HANDLERS
-// ═══════════════════════════════════════════════════
+// --- REGISTER GLOBAL ACTION HANDLERS ---
 window._fraudReview = (eventId) => handleReview(eventId);
 window._fraudBlockUser = (eventId, userId) => handleBlockUser(eventId, userId);
 window._fraudWhitelist = (eventId, userId) => handleWhitelist(eventId, userId);
@@ -749,9 +725,7 @@ window._fraudConfirmEscalate = (eventId, userId) => confirmEscalate(eventId, use
 window._fraudConfirmUnblock = (userId) => confirmUnblock(userId);
 window._fraudUnblockFromDrawer = (userId) => { closeAllOverlays(); handleUnblock(userId); };
 
-// ═══════════════════════════════════════════════════
-// MAIN RENDER
-// ═══════════════════════════════════════════════════
+// --- MAIN RENDER ---
 export function renderFraudDashboard(container) {
     injectToastStyles();
     activityFeedData = generateFlaggedEvents(40);
@@ -849,9 +823,7 @@ export function renderFraudDashboard(container) {
     document.getElementById('simulateAttackBtn')?.addEventListener('click', toggleAttackSimulation);
 }
 
-// ═══════════════════════════════════════════════════
-// 1. THREAT METER — Animated SVG Gauge
-// ═══════════════════════════════════════════════════
+// --- 1. THREAT METER — Animated SVG Gauge ---
 function renderThreatMeter() {
     const section = document.getElementById('threatMeterSection');
     if (!section) return;
@@ -929,9 +901,7 @@ function updateThreatMeter(level) {
     }
 }
 
-// ═══════════════════════════════════════════════════
-// 2. KPI CARDS with Sparklines
-// ═══════════════════════════════════════════════════
+// --- 2. KPI CARDS with Sparklines ---
 function renderKPICards() {
     const section = document.getElementById('kpiSection');
     if (!section) return;
@@ -993,9 +963,7 @@ function renderKPICards() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// 3. REAL-TIME ACTIVITY FEED — Now with functional buttons
-// ═══════════════════════════════════════════════════
+// --- 3. REAL-TIME ACTIVITY FEED ---
 function renderActivityFeed() {
     const list = document.getElementById('activityFeedList');
     if (!list) return;
@@ -1066,9 +1034,7 @@ function addEventToFeed(event) {
     while (list.children.length > 25) list.removeChild(list.lastChild);
 }
 
-// ═══════════════════════════════════════════════════
-// 4. FRAUD HEATMAP — Hour × Day grid
-// ═══════════════════════════════════════════════════
+// --- 4. FRAUD HEATMAP ---
 function renderHeatmap() {
     const grid = document.getElementById('heatmapGrid');
     if (!grid) return;
@@ -1104,9 +1070,7 @@ function renderHeatmap() {
     grid.innerHTML = html;
 }
 
-// ═══════════════════════════════════════════════════
-// 5. RISK SCORE DISTRIBUTION with Threshold Slider
-// ═══════════════════════════════════════════════════
+// --- 5. RISK SCORE DISTRIBUTION ---
 function renderRiskDistribution() {
     const content = document.getElementById('riskDistContent');
     if (!content) return;
@@ -1154,9 +1118,7 @@ function renderRiskDistribution() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// 6. FRAUD TYPE BREAKDOWN — Doughnut Chart
-// ═══════════════════════════════════════════════════
+// --- 6. FRAUD TYPE BREAKDOWN ---
 function renderFraudTypeChart() {
     const ctx = document.getElementById('fraudTypeChart');
     if (!ctx || !window.Chart) return;
@@ -1190,9 +1152,7 @@ function renderFraudTypeChart() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// 7. GEO-INTELLIGENCE MAP
-// ═══════════════════════════════════════════════════
+// --- 7. GEO-INTELLIGENCE MAP ---
 function renderGeoMap() {
     const content = document.getElementById('geoMapContent');
     if (!content) return;
@@ -1236,9 +1196,7 @@ function renderGeoMap() {
     `;
 }
 
-// ═══════════════════════════════════════════════════
-// 8. DEVICE & BEHAVIOR FINGERPRINT PANEL
-// ═══════════════════════════════════════════════════
+// --- 8. DEVICE & BEHAVIOR FINGERPRINT PANEL ---
 function renderDevicePanel() {
     const content = document.getElementById('devicePanelContent');
     if (!content) return;
@@ -1281,9 +1239,7 @@ function renderDevicePanel() {
     `;
 }
 
-// ═══════════════════════════════════════════════════
-// 9. BLOCKED USERS, WATCHLIST & WHITELISTED — with actions
-// ═══════════════════════════════════════════════════
+// --- 9. BLOCKED USERS, WATCHLIST & WHITELISTED ---
 function renderBlockedUsers() {
     const content = document.getElementById('blockedContent');
     if (!content) return;
@@ -1417,9 +1373,7 @@ window._fraudRevokeWhitelist = function(userId) {
     showAdminToast(`Whitelist revoked for ${userId}`, 'warning');
 };
 
-// ═══════════════════════════════════════════════════
-// 10. FRAUD TREND LINE CHART — 30 days
-// ═══════════════════════════════════════════════════
+// --- 10. FRAUD TREND LINE CHART ---
 function renderTrendChart() {
     const ctx = document.getElementById('trendChart');
     if (!ctx || !window.Chart) return;
@@ -1488,9 +1442,7 @@ function renderTrendChart() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// SIMULATE ATTACK
-// ═══════════════════════════════════════════════════
+// --- SIMULATE ATTACK ---
 function toggleAttackSimulation() {
     const btn = document.getElementById('simulateAttackBtn');
     if (!btn) return;

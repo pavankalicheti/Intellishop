@@ -88,9 +88,7 @@ function renderOrdersPage() {
     `).join('');
 }
 
-// ═══════════════════════════════════════════
-// STATUS TIMELINE
-// ═══════════════════════════════════════════
+// --- STATUS TIMELINE ---
 
 function renderTimeline(order) {
     const currentIdx = STATUS_FLOW.indexOf(order.status);
@@ -136,9 +134,7 @@ function getStatusColor(status) {
     return colors[status] || '#6b7280';
 }
 
-// ═══════════════════════════════════════════
-// RETURNS & EXCHANGE
-// ═══════════════════════════════════════════
+// --- RETURNS & EXCHANGE ---
 
 window.requestReturn = function(orderId) {
     const reason = prompt('Reason for return:\n1. Wrong size\n2. Defective product\n3. Not as described\n4. Changed mind\n\nEnter reason:');
@@ -177,9 +173,7 @@ window.requestExchange = function(orderId) {
     }
 };
 
-// ═══════════════════════════════════════════
-// EXISTING FUNCTIONS (preserved)
-// ═══════════════════════════════════════════
+// --- EXISTING FUNCTIONS ---
 
 window.reorderLocal = function(productId) {
     const products = JSON.parse(localStorage.getItem('intellishop_products_v9') || localStorage.getItem('intellishop_products_v7') || '[]');
@@ -206,9 +200,7 @@ window.cancelOrderLocal = function(orderId) {
     }
 }
 
-// ═══════════════════════════════════════════
-// NOTIFICATION HELPER (used by orders)
-// ═══════════════════════════════════════════
+// --- NOTIFICATION HELPER ---
 
 function addNotification(title, message) {
     const notifs = JSON.parse(localStorage.getItem('intellishop_notifications') || '[]');
