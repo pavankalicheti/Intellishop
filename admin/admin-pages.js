@@ -304,6 +304,10 @@ export function renderSalesPage(container) {
                     scales: {
                         y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', callback: v => '₹' + (v/1000) + 'K' } },
                         x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                    },
+                    animation: { duration: 1000 },
+                    onResize: function(chart, size) {
+                        chart.canvas.parentNode.style.height = '280px';
                     }
                 }
             });
@@ -328,6 +332,9 @@ export function renderSalesPage(container) {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { position: 'right', labels: { color: '#94a3b8', boxWidth: 12, padding: 10, font: { size: 11 } } }
+                    },
+                    onResize: function(chart, size) {
+                        chart.canvas.parentNode.style.height = '280px';
                     }
                 }
             });

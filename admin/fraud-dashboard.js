@@ -1151,7 +1151,11 @@ function renderFraudTypeChart() {
                     labels: { color: '#94a3b8', boxWidth: 12, padding: 12, font: { size: 11 } }
                 }
             },
-            animation: { animateRotate: true, duration: 1200 }
+            animation: { animateRotate: true, duration: 1200 },
+            onResize: function(chart, size) {
+                // Lock height to prevent expansion loop
+                chart.canvas.parentNode.style.height = '260px';
+            }
         }
     });
 }
@@ -1441,7 +1445,11 @@ function renderTrendChart() {
                 y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
                 x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 9 }, maxTicksLimit: 15 } }
             },
-            animation: { duration: 1500 }
+            animation: { duration: 1500 },
+            onResize: function(chart, size) {
+                // Lock height to prevent expansion loop
+                chart.canvas.parentNode.style.height = '280px';
+            }
         }
     });
 }
