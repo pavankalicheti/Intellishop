@@ -1,0 +1,18 @@
+# IntelliShop — Python Dependencies
+# ====================================
+# Required packages for the supplementary ML and analytics modules
+# located in the /ml directory.
+#
+# Install:
+#   pip install -r requirements.txt
+#
+# These modules are standalone and do NOT affect the main
+# IntelliShop web application in any way.
+
+# --- Data Science & Machine Learning ---
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# --- HTTP Requests (Twilio SMS, Slack Webhooks) ---
+requests>=2.31.0
