@@ -773,9 +773,7 @@ export function renderFraudDashboard(container) {
                 </div>
                 <div class="fraud-panel" id="fraudTypeSection">
                     <h3 class="panel-title">🧩 Fraud Type Breakdown</h3>
-                    <div>
-                        <canvas id="fraudTypeChart" width="500" height="260"></canvas>
-                    </div>
+                    <canvas id="fraudTypeChart" height="260"></canvas>
                 </div>
             </div>
 
@@ -804,9 +802,7 @@ export function renderFraudDashboard(container) {
             <!-- 10. TREND CHART -->
             <div class="fraud-panel" id="trendSection">
                 <h3 class="panel-title">📈 30-Day Fraud Trend</h3>
-                <div>
-                    <canvas id="trendChart" width="900" height="280"></canvas>
-                </div>
+                <canvas id="trendChart" height="120"></canvas>
             </div>
         </div>
     `;
@@ -1142,7 +1138,8 @@ function renderFraudTypeChart() {
             }]
         },
         options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: false,
             cutout: '60%',
             plugins: {
                 legend: {
@@ -1150,7 +1147,7 @@ function renderFraudTypeChart() {
                     labels: { color: '#94a3b8', boxWidth: 12, padding: 12, font: { size: 11 } }
                 }
             },
-            animation: false
+            animation: { animateRotate: true, duration: 1200 }
         }
     });
 }
@@ -1421,7 +1418,8 @@ function renderTrendChart() {
             ]
         },
         options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: false,
             interaction: { mode: 'index', intersect: false },
             plugins: {
                 legend: { labels: { color: '#94a3b8', boxWidth: 12, padding: 16, font: { size: 11 } } },
@@ -1439,7 +1437,7 @@ function renderTrendChart() {
                 y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
                 x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 9 }, maxTicksLimit: 15 } }
             },
-            animation: false
+            animation: { duration: 1500 }
         }
     });
 }

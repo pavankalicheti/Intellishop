@@ -249,15 +249,11 @@ export function renderSalesPage(container) {
         <div class="sales-charts-grid">
             <div class="chart-card">
                 <h3>Monthly Revenue</h3>
-                <div>
-                    <canvas id="monthlyRevenueChart" width="550" height="280"></canvas>
-                </div>
+                <canvas id="monthlyRevenueChart"></canvas>
             </div>
             <div class="chart-card">
                 <h3>Payment Methods</h3>
-                <div>
-                    <canvas id="paymentMethodChart" width="400" height="280"></canvas>
-                </div>
+                <canvas id="paymentMethodChart"></canvas>
             </div>
         </div>
 
@@ -298,13 +294,12 @@ export function renderSalesPage(container) {
                     }]
                 },
                 options: {
-                    responsive: false,
+                    responsive: true,
                     plugins: { legend: { display: false } },
                     scales: {
                         y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', callback: v => '₹' + (v/1000) + 'K' } },
                         x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
-                    },
-                    animation: false
+                    }
                 }
             });
         }
@@ -324,11 +319,10 @@ export function renderSalesPage(container) {
                     }]
                 },
                 options: {
-                    responsive: false,
+                    responsive: true,
                     plugins: {
                         legend: { position: 'right', labels: { color: '#94a3b8', boxWidth: 12, padding: 10, font: { size: 11 } } }
-                    },
-                    animation: false
+                    }
                 }
             });
         }
